@@ -1,0 +1,382 @@
+@font-face {
+  font-family: "pixel";
+  src:url("../res/fonts/thintel/Thintel.eot"),
+      url("../res/fonts/thintel/Thintel.woff") format("woff"), 
+      url("../res/fonts/thintel/Thintel.woff2") format("woff2"), 
+      url("../res/fonts/thintel/Thintel.ttf")  format("truetype"),
+      url("../res/fonts/thintel/Thintel.svg") format("svg");
+}
+
+:root{
+  --black: #000;
+  --light: #ededed;
+  --purple: #703687;
+  --dark-purple: #221a3d;
+  --green: #7eab60;
+  --dark-green: #44803e;
+
+  --skill-box-size: 360px;
+
+  --discord: "https://discordapp.com/users/776145967383969804";
+  --itch: "https://x-void-x.itch.io";
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+li{
+  list-style: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+body{
+  font-family: "pixel", Arial, sans-serif;
+  font-size: 2.2rem;
+  background-color: var(--dark-purple);
+  cursor: url("../res/images/Cursor.png") 15 15, auto;
+}
+
+button, input, textarea{
+  font-family: "pixel", Arial, sans-serif;
+}
+
+.clickable, a, button{
+  cursor: url("../res/images/CursorClick.png") 15 15, auto;
+}
+
+.container{
+  margin-left: 2vw;
+  margin-right: 2vw;
+  padding-bottom: 60px;
+}
+
+
+
+header{
+  color:  var(--light);
+  padding: 20px 0;
+}
+
+.header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10vw;
+}
+
+.header-container > h1{
+  font-size: 4rem;
+  letter-spacing: 5px;
+  font-weight: 600;
+  color: var(--purple);
+  text-decoration: underline;
+  text-shadow: 0 0 8px var(--purple);
+  animation: text-glow 1s linear alternate infinite;
+}
+
+@keyframes text-glow {
+  to{text-shadow: 0 0 0px var(--purple);}
+}
+
+.navigation{
+  display: flex;
+}
+
+.navigation > li{
+  margin-left: 40px;
+}
+
+.navigation > li > a{
+  color: var(--light);
+}
+
+.navigation > li:hover > a{
+  color: var(--green);
+}
+
+@media only screen and (max-width: 900px) {
+  .header-container{
+    flex-direction: column;
+  }
+
+  .header-container > ul{
+    margin-top: 20px;
+  }
+}
+
+
+
+@keyframes main-bg-scroll {
+  to{
+    background-position: 100% -100%;
+  }
+}
+
+main{
+  background: radial-gradient(#fff0, #fff0, var(--dark-purple));
+}
+
+.main-bg{
+  position: relative;
+  z-index: -1;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background: url("../res/images/Space.png");
+  background-repeat: repeat;
+  animation: main-bg-scroll 40s linear infinite;
+}
+
+.main-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+  padding: 3rem 1rem 4rem 1rem;
+}
+
+.main-content::before {
+  z-index: -1;
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  background-color: var(--dark-purple);
+  border-radius: 40px;
+  opacity: 0.4;
+}
+
+.logo{
+  width: 280px;
+  margin-right: 20px;
+}
+
+.main-text{
+  max-width: 40vw;
+}
+
+.main-text > h1{
+  font-weight: normal;
+  color: var(--light);
+}
+
+.main-text > h1 > span{
+  font-weight: bold;
+  color: var(--green);
+}
+
+.main-text > p{
+  font-size: 3rem;
+  margin-top: 1.2rem;
+  line-height: 2.5rem;
+  color: var(--light);
+}
+
+@media only screen and (max-width: 900px) {
+  .main-content{
+    flex-direction: column;
+  }
+
+  .main-text > h1{
+    text-align: center;
+  }
+}
+
+
+.section-title{
+  font-size: 3rem;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: var(--light);
+  text-shadow: 0 0 8px var(--light);
+}
+
+.skills{
+  background-color: var(--dark-purple);
+}
+
+.skills > p{
+  text-align: center;
+  color: var(--light);
+}
+
+.skills-wrapper{
+  display: grid;
+  gap: 40px 10vw;
+  margin-top: 20px;
+  justify-content: center;
+  grid-template-columns: repeat(2,var(--skill-box-size));
+}
+
+.skills-wrapper > li{
+  border: 5px solid var(--light);
+  height: var(--skill-box-size);
+  position: relative;
+  background-image: url("../res/images/SkillBox.png");
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px var(--light);
+}
+
+.skills-wrapper > li:hover{
+  border-color: var(--green);
+  opacity: 0.8;
+}
+
+.skill-programming{
+}
+.skill-pixel{
+  background-position-x: 100%;
+}
+.skill-music{
+  background-position-y: 100%;
+}
+.skill-editing{
+  background-position-x: 100%;
+  background-position-y: 100%;
+}
+
+.skills-wrapper > li > h4{
+  opacity: 0;
+  text-align: center;
+  font-size: 4rem;
+  text-decoration: underline;
+  color: var(--dark-purple);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.skills-wrapper > li:hover > h4{
+  opacity: 1;
+}
+
+@media only screen and (max-width: 900px) {
+  .skills-wrapper{
+    grid-template-columns: var(--skill-box-size);
+  }
+}
+
+
+.contact{
+  background-color: var(--purple);
+  text-align: center;
+  color: var(--light);
+}
+
+.social-media{
+  margin: 0 32vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social-media > li:hover > img{
+  opacity: 0.8;
+}
+.social-media > li:hover > p{
+  text-decoration: underline;
+  color: var(--green);
+}
+
+.social-media > li > img{
+  margin-bottom: 8px;
+}
+
+.email-section{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 80vw;
+  margin: 40px auto 0 auto;
+  padding: 0 10px 10px 10px;
+  background-color: var(--dark-purple);
+  border-radius: 8px;
+}
+
+.email-section input, textarea{
+  border-width: 0;
+  font-size: 2rem;
+  padding: 10px;
+  background-color: var(--light);
+  caret-color: var(--dark-purple);
+  color: var(--dark-purple);
+}
+
+.email-section input:focus, textarea:focus{
+  border-width: 0;
+  outline: none;
+}
+
+.email-section p{
+  color: var(--light);
+}
+
+.email-section h2{
+  color: var(--green);
+  font-weight: normal;
+}
+
+.email-section > *{
+  margin-top: 25px;
+}
+
+.email-section > button{
+  font-size: 2.2rem;
+  background-color: var(--dark-green);
+  color: var(--light);
+  height: 40px;
+  width: 100%;
+  border-width: 0;
+  border-color: var(--light);
+  border-style: solid;
+}
+
+.email-section > button:hover{
+  border-width: 2px;
+  background-color: var(--green);
+}
+
+.line-input{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.line-input > input{
+  margin-left: 10px;
+  width: 100%;
+  height: 40px;
+}
+
+.email-body{
+  width: 100%;
+}
+
+.email-body > textarea{
+  resize: none;
+  margin-top: 10px;
+  width: 100%;
+}
+
+
+footer{
+  padding: 20px 0;
+  text-align: center;
+  color: var(--light);
+}
+
+footer span{
+  font-size: 1rem;
+}
