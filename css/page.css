@@ -1,0 +1,121 @@
+.description{
+  padding: 40px 5vw;
+  background-color: var(--purple);
+  min-height: 200px;
+  border: 2px solid var(--dark-green);
+}
+
+.description > h1{
+  text-align: center;
+  color: var(--green);
+  font-size: 3.8rem;
+  letter-spacing: 0.6rem;
+}
+
+.description > p{
+  margin-top: 20px;
+  color: var(--light);
+}
+
+
+
+.stats{
+  margin-top: 40px;
+}
+
+.stats-table-container{
+  width: fit-content;
+  margin: 50px auto 0 auto;
+}
+
+.stats-table-container > skill-stats{
+  display: block;
+  margin: 5px auto;
+}
+
+.stats-table-container > h4{
+  font-weight: normal;
+  text-align: center;
+  padding: 8px 0;
+  color: var(--light);
+  background-color: var(--dark-green);
+}
+
+/* js generated tables */
+.table-scroll-container{
+  overflow-x: auto;
+}
+
+.stats-table{
+  border-collapse: collapse;
+  border-top: 10px solid var(--dark-green);
+}
+
+.stats-table tr:first-child{
+  text-align: center;
+  background-color: var(--purple);
+}
+
+.stats-table td{
+  padding: 8px 20px;
+  color: var(--light);
+  border-top: 5px solid var(--dark-purple);
+}
+
+.stats-table td:first-child{
+  background-color: var(--purple);
+  width: 0%; /* this seems to behave as min-content should, while min-content doesn't work. and I thought c++ was wierd*/
+}
+
+.stats-table .table-rect{
+  margin: 0;
+  padding: 0;
+}
+
+.stats-table .table-rect > div{
+  background-color: var(--green);
+  border-bottom: 4px solid var(--dark-green);
+  height: 40px;
+  margin: 10px 0;
+}
+
+.stats-table .table-rect-end > div{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+
+
+.example{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.example > h2{
+  text-align: center;
+}
+
+.example > p{
+  color: var(--light);
+  background-color: var(--purple);
+  padding: 20px 20px;
+}
+
+.example > .social-media{
+  margin-top: 20px;
+}
+
+
+
+.back-to-idx{
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  color: var(--light);
+}
+
+.back-to-idx:hover{
+  color: var(--green);
+}

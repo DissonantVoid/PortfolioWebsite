@@ -1,8 +1,5 @@
 :root{
   --skill-box-size: 360px;
-
-  --discord: "https://discordapp.com/users/776145967383969804";
-  --itch: "https://x-void-x.itch.io";
 }
 
 
@@ -22,7 +19,8 @@ main{
   display: grid;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  min-height: 80vh;
+  padding: 40px 0;
   background: url("../res/images/Space.png");
   background-repeat: repeat;
   animation: main-bg-scroll 40s linear infinite;
@@ -32,7 +30,6 @@ main{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: fit-content;
   height: fit-content;
   position: relative;
   padding: 3rem 1rem 4rem 1rem;
@@ -51,7 +48,8 @@ main{
 }
 
 .logo{
-  width: 280px;
+  width: 18vw;
+  min-width: 200px;
   margin-right: 20px;
 }
 
@@ -81,20 +79,15 @@ main{
     flex-direction: column;
   }
 
+  .logo{
+    margin: 0;
+  }
+
   .main-text > h1{
     text-align: center;
   }
 }
 
-
-.section-title{
-  font-size: 3rem;
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  color: var(--light);
-  text-shadow: 0 0 8px var(--light);
-}
 
 .skills{
   background-color: var(--dark-purple);
@@ -130,7 +123,7 @@ main{
 
 .skill-programming{
 }
-.skill-pixel{
+.skill-pixelart{
   background-position-x: 100%;
 }
 .skill-music{
@@ -172,20 +165,7 @@ main{
 
 .social-media{
   margin: 0 32vw;
-  display: flex;
-  justify-content: space-between;
-}
-
-.social-media > li:hover > img{
-  opacity: 0.8;
-}
-.social-media > li:hover > p{
-  text-decoration: underline;
-  color: var(--green);
-}
-
-.social-media > li > img{
-  margin-bottom: 8px;
+  /* common.css has the rest*/
 }
 
 .email-section{
@@ -238,8 +218,8 @@ main{
 }
 
 .email-section > button:hover{
-  border-width: 2px;
-  background-color: var(--green);
+  border-width: 4px;
+  background-color: transparent;
 }
 
 .line-input{

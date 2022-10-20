@@ -34,15 +34,19 @@ body{
   font-family: "pixel", Arial, sans-serif;
   font-size: 2.2rem;
   background-color: var(--dark-purple);
-  cursor: url("../res/images/Cursor.png") 15 15, auto;
+  cursor: url("../res/images/Cursor.png"), auto;
+}
+
+.clickable, a, button{
+  cursor: url("../res/images/CursorClick.png"), auto;
+}
+
+input, textarea{
+  cursor: url("../res/images/CursorText.png"), auto;
 }
 
 button, input, textarea{
   font-family: "pixel", Arial, sans-serif;
-}
-
-.clickable, a, button{
-  cursor: url("../res/images/CursorClick.png") 15 15, auto;
 }
 
 .container{
@@ -50,6 +54,17 @@ button, input, textarea{
   margin-right: 2vw;
   padding-bottom: 60px;
 }
+
+.section-title{
+  font-size: 3rem;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: var(--light);
+  text-shadow: 0 0 8px var(--light);
+}
+
+
 
 header{
   font-size: 2.2rem;
@@ -71,12 +86,14 @@ header{
   color: var(--purple);
   text-decoration: underline;
   text-shadow: 0 0 8px var(--purple);
+  text-align: center;
   animation: text-glow 1s linear alternate infinite;
 }
 
 @keyframes text-glow {
   to{text-shadow: 0 0 0px var(--purple);}
 }
+
 
 
 .navigation{
@@ -105,6 +122,29 @@ header{
   }
 }
 
+
+
+.social-media{
+  display: flex;
+  justify-content: space-between;
+}
+
+.social-media > li > p{
+  text-align: center;
+  color: var(--light);
+}
+
+.social-media > li:hover > img{
+  opacity: 0.8;
+}
+.social-media > li:hover > p{
+  text-decoration: underline;
+  color: var(--green);
+}
+
+.social-media > li > img{
+  margin-bottom: 8px;
+}
 
 
 footer{

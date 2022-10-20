@@ -11,6 +11,7 @@
   <title>Portfolio | Dissonant Void</title>
 </head>
 <body>
+  <app-header type="index"></app-header>
   <main>
     <div class="main-bg container">
       <div class="main-content">
@@ -29,7 +30,7 @@
       <li class="skill-programming clickable">
         <h4>Programming</h4>
       </li>
-      <li class="skill-pixel clickable">
+      <li class="skill-pixelart clickable">
         <h4>Pixel Art</h4>
       </li>
       <li class="skill-music clickable">
@@ -43,11 +44,11 @@
   <section id="contact" class="contact container">
     <h2 class="section-title">- Contact -</h2>
     <ul class="social-media">
-      <li class="clickable">
+      <li id="discord" class="clickable">
         <img src="res/images/Discord.png" alt="Discord">
         <p>Discord</p>
       </li>
-      <li class="clickable">
+      <li id="itch" class="clickable">
         <img src="res/images/Itch.png" alt="Itch">
         <p>Itch</p>
       </li>
@@ -69,5 +70,6 @@
       <button> Submit </button>
     </div>
   </section>
+  <app-footer></app-footer>
 </body>
 </html>
