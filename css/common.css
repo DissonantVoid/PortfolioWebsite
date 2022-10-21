@@ -58,10 +58,11 @@ button, input, textarea{
 .section-title{
   font-size: 3rem;
   text-align: center;
+  letter-spacing: 0.2rem;
   padding-top: 20px;
   padding-bottom: 20px;
   color: var(--light);
-  text-shadow: 0 0 8px var(--light);
+  text-shadow: 0 0 6px var(--light);
 }
 
 
