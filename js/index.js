@@ -11,7 +11,7 @@ for (let i = 0; i < skills.length; i++)
 {
   let skill = document.querySelector("#skills .skill-" + skills[i]);
   skill.idx = i; //TODO: is this the best way to do it ?
-  skill.addEventListener("click",onSkillClicked,false);
+  skill.addEventListener("click",onSkillClicked);
 }
 
 
@@ -22,17 +22,18 @@ function goToLink(e)
 
 let discord = document.querySelector("#discord");
 discord.link = "https://discordapp.com/users/776145967383969804";
-discord.addEventListener("click",goToLink,false);
+discord.addEventListener("click",goToLink);
 
 let itch = document.querySelector("#itch");
 itch.link = "https://x-void-x.itch.io";
-itch.addEventListener("click",goToLink,false);
+itch.addEventListener("click",goToLink);
 
 
 //creatures, move to seperate file
 let creature = document.createElement("img");
 creature.src = "../res/images/creature.png";
 creature.style.position = "fixed";
+creature.style.pointerEvents = "none";
 document.body.appendChild(creature);
 let pos = {
   x:0, y:0
@@ -88,11 +89,11 @@ function loop(timestamp)
     pos["x"] -=  mousePos["x"];
     pos["y"] -=  mousePos["y"];
 
-    //rotate point
+    //rotate
     let newPosX = pos["x"] * cos - pos["y"] * sin;
     let newPosY = pos["x"] * sin + pos["y"] * cos;
 
-    //translate point back:
+    //translate back
     pos["x"] = newPosX + mousePos["x"];
     pos["y"] = newPosY + mousePos["y"];
   }

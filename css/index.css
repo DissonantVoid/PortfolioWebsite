@@ -31,6 +31,7 @@ main{
   justify-content: center;
   align-items: center;
   height: fit-content;
+  max-width: 75vw;
   position: relative;
   padding: 3rem 1rem 4rem 1rem;
 }
@@ -48,18 +49,14 @@ main{
 }
 
 .logo{
-  width: 18vw;
-  min-width: 200px;
+  width: 300px;
   margin-right: 20px;
-}
-
-.main-text{
-  max-width: 40vw;
 }
 
 .main-text > h1{
   font-weight: normal;
   color: var(--light);
+  font-size: 5.5rem;
 }
 
 .main-text > h1 > span{
@@ -68,15 +65,15 @@ main{
 }
 
 .main-text > p{
-  font-size: 3rem;
+  font-size: 2.6rem;
   margin-top: 1.2rem;
-  line-height: 2.5rem;
+  line-height: 2.4rem;
   letter-spacing: 0.1rem;
   color: var(--light);
 }
 
 .main-text > p > .focal-sentence{
-  font-size: 3.4rem;
+  font-size: 1.2em;
 }
 
 @media only screen and (max-width: 900px) {
@@ -85,11 +82,17 @@ main{
   }
 
   .logo{
+    width: 200px;
     margin: 0;
   }
 
   .main-text > h1{
     text-align: center;
+  }
+
+  .main-text > p{
+    font-size: 2rem;
+    line-height: 1.6rem;
   }
 }
 
@@ -123,7 +126,6 @@ main{
 
 .skills-wrapper > li:hover{
   border-color: var(--green);
-  opacity: 0.8;
 }
 
 .skill-programming{
@@ -140,20 +142,27 @@ main{
 }
 
 .skills-wrapper > li > h4{
-  opacity: 0;
   text-align: center;
   font-size: 4rem;
   text-decoration: underline;
-  color: var(--dark-purple);
+  color: var(--light);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.skills-wrapper > li:hover > h4{
-  opacity: 1;
+@media (pointer: fine) {
+  /*if user is using mouse, hide skill text untill hovered*/
+  .skills-wrapper > li > h4{
+    opacity: 0;
+  }
+  
+  .skills-wrapper > li:hover > h4{
+    opacity: 1;
+  }
 }
+
 
 @media only screen and (max-width: 900px) {
   .skills-wrapper{
@@ -166,11 +175,6 @@ main{
   background-color: var(--purple);
   text-align: center;
   color: var(--light);
-}
-
-.social-media{
-  margin: 0 32vw;
-  /* common.css has the rest*/
 }
 
 .email-section{

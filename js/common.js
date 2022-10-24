@@ -6,10 +6,11 @@ class appHeader extends HTMLElement
   {
     super();
     this.navType = this.getAttribute("type");
-    let nav = this.navType === "index" ?
+    let isIndex = this.navType === "index";
+    let nav = isIndex ?
     `
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a class="nav-skill">Skills</a></li>
+    <li><a class="nav-contact">Contact</a></li>
     `
      :
     `
@@ -26,6 +27,14 @@ class appHeader extends HTMLElement
       </div>
     </header>
 `
+    if(isIndex)
+    {
+      document.querySelector("app-header .navigation .nav-skill").addEventListener("click",
+      function() { document.getElementById("skills").scrollIntoView({behavior: "smooth"}); });
+
+      document.querySelector("app-header .navigation .nav-contact").addEventListener("click",
+      function() { document.getElementById("contact").scrollIntoView({behavior: "smooth"}); });
+    }
   }
 }
 
