@@ -29,9 +29,10 @@ itch.link = "https://x-void-x.itch.io";
 itch.addEventListener("click",goToLink);
 
 
-//creatures, move to seperate file
+//creatures
+//TODO: move to seperate file
 let creature = document.createElement("img");
-creature.src = "../res/images/creature.png";
+creature.src = "res/images/Creature.png";
 creature.style.position = "fixed";
 creature.style.pointerEvents = "none";
 document.body.appendChild(creature);
