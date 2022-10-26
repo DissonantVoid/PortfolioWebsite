@@ -7,6 +7,7 @@
   <link rel="icon" href="../res/images/Icon.png" type="image/x-icon">
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="../css/skill.css">
+  <link rel="stylesheet" href="../css/programming.css">
   <script src="../js/common.js" defer></script>
   <title>Portfolio | Programming</title>
 </head>
@@ -18,60 +19,48 @@
   </section>
   <section class="stats container">
     <h2 class="section-title">- Skills -</h2>
-    <div class="stats-table-container">
-      <h4>Programming Languages</h4>
-      <skill-stats>
-        <ul>
-          <li title="beginner">
-          </li>
-          <li title="intermediate">
-            java, c#, web
-          </li>
-          <li title="advanced">
-            linux terminal, c/c++, python, lua
-          </li>
-          <li title="expert">
-            gdscript
-          </li>
-        </ul>
-      </skill-stats>
-    </div>
-    <div class="stats-table-container">
-      <h4>Tools / Game Engines</h4>
-      <skill-stats>
-        <ul>
-          <li title="beginner">
-            android-studio
-          </li>
-          <li title="experienced">
-            git, unity, cmake
-          </li>
-          <li title="advanced">
-            godot, pico8
-          </li>
-        </ul>
-      </skill-stats>
-    </div>
-    <div class="stats-table-container">
-      <h4>Fields</h4>
-      <skill-stats>
-        <ul>
-          <li title="experienced">
-            networking, windows native, web dev
-          </li>
-          <li title="advanced">
-            game dev, automation, application dev
-          </li>
-        </ul>
-      </skill-stats>
-    </div>
+    <skill-stats title="Programming Languages">
+      <ul>
+        <li title="beginner">
+        </li>
+        <li title="experienced">
+          java, c#, web
+        </li>
+        <li title="advanced">
+          linux terminal, c/c++, python, lua, gdscript
+        </li>
+      </ul>
+    </skill-stats>
+    <skill-stats title="Tools / Game Engines">
+      <ul>
+        <li title="beginner">
+          android-studio
+        </li>
+        <li title="experienced">
+          git, unity, cmake
+        </li>
+        <li title="advanced">
+          godot, pico8
+        </li>
+      </ul>
+    </skill-stats>
+    <skill-stats title="Fields">
+      <ul>
+        <li title="experienced">
+          networking, windows native, web dev
+        </li>
+        <li title="advanced">
+          game dev, automation, application dev
+        </li>
+      </ul>
+    </skill-stats>
   </section>
 
   <section class="example container">
-    <h2 class="section-title">- Previous Work -</h2>
+    <h2 class="section-title">- Examples -</h2>
     <p>Examples of my work can be found on my Github page</p>
     <ul class="social-media">
-      <li id="Github" class="clickable">
+      <li id="Github" class="clickable" clickable-new-page-link="https://github.com/DissonantVoid">
         <img src="../res/images/Discord.png" alt="Github">
         <p>Github</p>
       </li>

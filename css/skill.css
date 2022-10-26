@@ -25,17 +25,14 @@
   width: fit-content;
 }
 
-.stats-table-container{
+/* js generated tables */
+skill-stats{
+  display: block;
   width: fit-content;
   margin-top: 50px;
 }
 
-.stats-table-container > skill-stats{
-  display: block;
-  margin: 5px auto;
-}
-
-.stats-table-container > h4{
+skill-stats > h4{
   font-weight: normal;
   text-align: center;
   padding: 8px 0;
@@ -43,8 +40,8 @@
   background-color: var(--dark-green);
 }
 
-/* js generated tables */
 .table-scroll-container{
+  margin-top: 5px;
   max-width: 80vw;
   overflow-x: auto;
 }
@@ -60,7 +57,7 @@
 }
 
 .stats-table td{
-  padding: 8px 20px;
+  padding: 8px 30px;
   color: var(--light);
   font-size: 2.4rem;
   border-top: 5px solid var(--dark-purple);
@@ -90,6 +87,7 @@
 
 @media only screen and (max-width: 900px) {
   .stats-table td{
+    padding: 8px 20px;
     font-size: 1.9rem;
   }
 }

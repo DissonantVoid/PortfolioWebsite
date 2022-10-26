@@ -100,6 +100,10 @@ class skillStats extends HTMLElement
     rows.reverse()
 
     //-reformating:-
+    //create title
+    let title = document.createElement("h4");
+    title.textContent = this.getAttribute("title");
+
     //create table with class "stats-table" parented by a div with class "table-scroll-container"
     let formattedHTML = createElementWithClass("div","table-scroll-container");
     
@@ -152,7 +156,7 @@ class skillStats extends HTMLElement
     }
    
     formattedHTML.appendChild(table);
-    this.innerHTML = formattedHTML.outerHTML; //outer html because we want to include the element itself and not just its children
+    this.innerHTML = title.outerHTML + formattedHTML.outerHTML; //outer html because we want to include the element itself and not just its children
   }
 
 }
@@ -167,3 +171,15 @@ function createElementWithClass(element, cls)
 customElements.define("app-header",appHeader);
 customElements.define("app-footer",appFooter);
 customElements.define("skill-stats",skillStats);
+
+
+function onClickableClicked(e)
+{
+  if (e.currentTarget.hasAttribute("clickable-new-page-link")) window.open(e.currentTarget.getAttribute("clickable-new-page-link"),"_blank");
+  if (e.currentTarget.hasAttribute("clickable-link")) window.open(e.currentTarget.getAttribute("clickable-link"),"_self");
+}
+
+const clickables = document.querySelectorAll(".clickable");
+clickables.forEach(clickable => {
+  clickable.addEventListener("click",onClickableClicked);
+});
