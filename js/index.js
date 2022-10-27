@@ -1,9 +1,5 @@
 "use strict";
 
-//particles
-//TODO: move to seperate file
-
-
 //creatures
 //TODO: move to seperate file
 let creature = document.createElement("img");
