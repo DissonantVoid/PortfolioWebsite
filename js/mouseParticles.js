@@ -1,85 +1,88 @@
-let canvas = document.createElement("canvas");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-canvas.style.position = "fixed";
-canvas.style.top = 0;
-canvas.style.left = 0;
-canvas.style.pointerEvents = "none";
-document.body.appendChild(canvas);
-let ccontex = canvas.getContext("2d");
+"use strict";
 
-window.addEventListener('resize', function(){
+window.addEventListener("load",function(){
+  
+  let canvas = document.createElement("canvas");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-});
-
-let particlesPool = new Array();
-const minPtclT = 1000, maxPtclT = 3000;
-let Particle = function(x,y){
-  this.x = x;
-  this.y = y;
-
-  this.dirX = 0;
-  this.dirY = 1;
-  let randAngle = Math.random() * (Math.PI * 2);
-  //TODO: brocken
-  this.dirX = Math.cos(randAngle) * this.dirX - Math.sin(randAngle) * this.dirY;
-  this.dirY = Math.sin(randAngle) * this.dirX + Math.cos(randAngle) * this.dirY;
-
-  this.speed = 0.1;
-  //lifetime in ms
-  this.lifetime = Math.random() * (maxPtclT - minPtclT) + minPtclT;
-}
-const ptclsPerMove = 3;
-
-document.onmousemove = onMouseMove;
-function onMouseMove(e) {
-  let x = e.clientX;
-  let y = e.clientY;
-
-  for (let i = 0; i < ptclsPerMove; i++)
-  {
-    particlesPool.push(new Particle(x,y));
+  canvas.style.position = "fixed";
+  canvas.style.top = 0;
+  canvas.style.left = 0;
+  canvas.style.pointerEvents = "none";
+  document.body.appendChild(canvas);
+  let ccontex = canvas.getContext("2d");
+  
+  window.addEventListener('resize', function(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+  
+  let particlesPool = new Array();
+  const minPtclT = 500, maxPtclT = 1000;
+  let Particle = function(x,y){
+    this.x = x;
+    this.y = y;
+  
+    this.dirX = 0;
+    this.dirY = 1;
+    let randAngle = Math.random() * (Math.PI * 2);
+    //TODO: brocken
+    this.dirX = Math.cos(randAngle) * this.dirX - Math.sin(randAngle) * this.dirY;
+    this.dirY = Math.sin(randAngle) * this.dirX + Math.cos(randAngle) * this.dirY;
+  
+    this.speed = 0.1;
+    //lifetime in ms
+    this.lifetime = Math.random() * (maxPtclT - minPtclT) + minPtclT;
   }
-}
-
-
-let lastTimestamp = 0;
-function loop(timestamp)
-{
-  let deltaTime = timestamp - lastTimestamp;
+  const ptclsPerMove = 3;
   
-  ccontex.clearRect(0,0,canvas.width,canvas.height);
-  
-  for (let i = particlesPool.length-1; i > -1; i--)
-  {
-    let ptcl = particlesPool[i];
-    
-    //update
-    ptcl.lifetime -= deltaTime;
-    if (ptcl.lifetime <= 0)
+  document.addEventListener("mousemove",function(e){
+    let x = e.clientX;
+    let y = e.clientY;
+    for (let i = 0; i < ptclsPerMove; i++)
     {
-      particlesPool.splice(i,1);
-      continue;
+      particlesPool.push(new Particle(x,y));
+    }
+  });
+  
+  let lastTimestamp = 0;
+  function loop(timestamp)
+  {
+    let deltaTime = timestamp - lastTimestamp;
+    
+    ccontex.clearRect(0,0,canvas.width,canvas.height);
+    
+    for (let i = particlesPool.length-1; i > -1; i--)
+    {
+      let ptcl = particlesPool[i];
+      
+      //update
+      ptcl.lifetime -= deltaTime;
+      if (ptcl.lifetime <= 0)
+      {
+        particlesPool.splice(i,1);
+        continue;
+      }
+      
+      //wall bounce
+      if (ptcl.x < 0 || ptcl.x > canvas.width)
+        ptcl.dirX = -ptcl.dirX;
+      if (ptcl.y < 0 || ptcl.y > canvas.height)
+        ptcl.dirY = -ptcl.dirY;
+  
+      ptcl.x += ptcl.dirX * ptcl.speed * deltaTime;
+      ptcl.y += ptcl.dirY * ptcl.speed * deltaTime;
+  
+      //draw
+      let a = 0.6//ptcl.lifetime/maxPtclT;
+      ccontex.fillStyle = `rgba(237, 237, 237, ${a})`;
+      ccontex.fillRect(ptcl.x,ptcl.y,9,9);
     }
     
-    //wall bounce
-    if (ptcl.x < 0 || ptcl.x > canvas.width)
-      ptcl.dirX = -ptcl.dirX;
-    if (ptcl.y < 0 || ptcl.y > canvas.height)
-      ptcl.dirY = -ptcl.dirY;
-
-    ptcl.x += ptcl.dirX * ptcl.speed * deltaTime;
-    ptcl.y += ptcl.dirY * ptcl.speed * deltaTime;
-
-    //draw
-    let a = 0.6//ptcl.lifetime/maxPtclT;
-    ccontex.fillStyle = `rgba(237, 237, 237, ${a})`;
-    ccontex.fillRect(ptcl.x,ptcl.y,9,9);
+    lastTimestamp = timestamp;
+    window.requestAnimationFrame(loop);
   }
   
-  lastTimestamp = timestamp;
   window.requestAnimationFrame(loop);
-}
 
-window.requestAnimationFrame(loop);
+})
