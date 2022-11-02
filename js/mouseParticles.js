@@ -2,6 +2,10 @@
 
 window.addEventListener("load",function(){
   
+  //show particles only if user has a mouse
+  //TODO: needs testing
+  if (matchMedia("(pointer:fine)").matches === false) return;
+
   let canvas = document.createElement("canvas");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -10,8 +14,11 @@ window.addEventListener("load",function(){
   canvas.style.left = 0;
   canvas.style.pointerEvents = "none";
   document.body.appendChild(canvas);
-  let ccontex = canvas.getContext("2d");
+  let contex = canvas.getContext("2d");
   
+  let img = new Image();
+  img.src = "../res/images/Star.png"
+
   window.addEventListener('resize', function(){
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
@@ -25,11 +32,11 @@ window.addEventListener("load",function(){
   
     this.dirX = 0;
     this.dirY = 1;
-    let randAngle = Math.random() * (Math.PI * 2);
+    this.angle = Math.random() * (Math.PI * 2);
     //TODO: brocken
-    this.dirX = Math.cos(randAngle) * this.dirX - Math.sin(randAngle) * this.dirY;
-    this.dirY = Math.sin(randAngle) * this.dirX + Math.cos(randAngle) * this.dirY;
-  
+    this.dirX = Math.cos(this.angle) * this.dirX - Math.sin(this.angle) * this.dirY;
+    this.dirY = Math.sin(this.angle) * this.dirX + Math.cos(this.angle) * this.dirY;
+
     this.speed = 0.1;
     //lifetime in ms
     this.lifetime = Math.random() * (maxPtclT - minPtclT) + minPtclT;
@@ -50,7 +57,7 @@ window.addEventListener("load",function(){
   {
     let deltaTime = timestamp - lastTimestamp;
     
-    ccontex.clearRect(0,0,canvas.width,canvas.height);
+    contex.clearRect(0,0,canvas.width,canvas.height);
     
     for (let i = particlesPool.length-1; i > -1; i--)
     {
@@ -63,20 +70,25 @@ window.addEventListener("load",function(){
         particlesPool.splice(i,1);
         continue;
       }
-      
+
       //wall bounce
-      if (ptcl.x < 0 || ptcl.x > canvas.width)
-        ptcl.dirX = -ptcl.dirX;
-      if (ptcl.y < 0 || ptcl.y > canvas.height)
-        ptcl.dirY = -ptcl.dirY;
+      // if (ptcl.x < 0 || ptcl.x > canvas.width)
+      //   ptcl.dirX = -ptcl.dirX;
+      // if (ptcl.y < 0 || ptcl.y > canvas.height)
+      //   ptcl.dirY = -ptcl.dirY;
   
       ptcl.x += ptcl.dirX * ptcl.speed * deltaTime;
       ptcl.y += ptcl.dirY * ptcl.speed * deltaTime;
   
       //draw
-      let a = 0.6//ptcl.lifetime/maxPtclT;
-      ccontex.fillStyle = `rgba(237, 237, 237, ${a})`;
-      ccontex.fillRect(ptcl.x,ptcl.y,9,9);
+      let timeLeft = ptcl.lifetime/maxPtclT; // [0,1]
+      contex.save();
+      contex.globalAlpha = timeLeft + 0.2;
+      contex.translate(ptcl.x,ptcl.y);
+      contex.scale(timeLeft + 0.4,timeLeft + 0.4);
+      contex.rotate(ptcl.angle);
+      contex.drawImage(img,0,0);
+      contex.restore();
     }
     
     lastTimestamp = timestamp;
