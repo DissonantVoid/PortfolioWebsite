@@ -1,5 +1,6 @@
 "use strict";
 
+
 window.addEventListener("load",function(){
   
   //show particles only if user has a mouse

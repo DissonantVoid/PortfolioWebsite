@@ -5,12 +5,13 @@ class appHeader extends HTMLElement
   constructor()
   {
     super();
+
     this.navType = this.getAttribute("type");
     let isIndex = this.navType === "index";
     let nav = isIndex ?
     `
-    <li><a class="nav-skill">Skills</a></li>
-    <li><a class="nav-contact">Contact</a></li>
+    <li><a id="nav-skill">Skills</a></li>
+    <li><a id="nav-contact">Contact</a></li>
     `
      :
     `
@@ -21,20 +22,58 @@ class appHeader extends HTMLElement
     <header>
       <div class="header-container">
         <h1>- Dissoant Void -</h1>
-        <ul class="navigation">` + nav +
-`
-        </ul>
+        <div class="header-links">
+          <ul class="navigation">`
+          + nav + `
+          </ul>
+          <ul class="settings">
+            <li class="audio-setting clickable"></li>
+            <li class="particles-setting clickable"></li>
+          </ul>
+        </div>
       </div>
     </header>
 `
     if(isIndex)
     {
-      document.querySelector("app-header .navigation .nav-skill").addEventListener("click",
+      document.getElementById("nav-skill").addEventListener("click",
       function() { document.getElementById("skills").scrollIntoView({behavior: "smooth"}); });
 
-      document.querySelector("app-header .navigation .nav-contact").addEventListener("click",
+      document.getElementById("nav-contact").addEventListener("click",
       function() { document.getElementById("contact").scrollIntoView({behavior: "smooth"}); });
     }
+
+    //settings & local storage
+    this.isAudioToggled = localStorage.getItem("isAudioToggled") === "true";
+    this.isParticlesToggled = localStorage.getItem("isParticlesToggled") === "true";
+
+    const audioSetting = document.querySelector(".audio-setting");
+    const particlesSetting = document.querySelector(".particles-setting");
+    this.toggleAudioHtml(this.isAudioToggled,audioSetting);
+    this.toggleParticlesHtml(this.isParticlesToggled,particlesSetting);
+
+    audioSetting.addEventListener("click",e => {
+      this.isAudioToggled = !this.isAudioToggled;
+      localStorage.setItem("isAudioToggled",this.isAudioToggled);
+      this.toggleAudioHtml(this.isAudioToggled,e.currentTarget);
+    });
+    particlesSetting.addEventListener("click",e => {
+      this.isParticlesToggled = !this.isParticlesToggled;
+      localStorage.setItem("isParticlesToggled",this.isParticlesToggled);
+      this.toggleParticlesHtml(this.isParticlesToggled,e.currentTarget);
+    });
+  }
+  
+  toggleAudioHtml(toggle, target)
+  {
+    if(toggle) target.setAttribute("toggled","");
+    else target.removeAttribute("toggled");
+  }
+  
+  toggleParticlesHtml(toggle, target)
+  {
+    if(toggle) target.setAttribute("toggled","");
+    else target.removeAttribute("toggled");
   }
 }
 

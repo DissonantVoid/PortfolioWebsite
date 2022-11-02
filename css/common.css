@@ -107,14 +107,15 @@ header{
   to{text-shadow: 0 0 0px var(--purple);}
 }
 
-
+.header-links{
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
 
 .navigation{
   display: flex;
-}
-
-.navigation > li{
-  margin-left: 40px;
+  gap: 20px;
 }
 
 .navigation > li > a{
@@ -128,13 +129,46 @@ header{
 @media only screen and (max-width: 900px) {
   .header-container{
     flex-direction: column;
+    gap: 10px;
+  }
+  
+  .header-links{
+    flex-direction: column;
+    gap: 10px;
   }
 
-  .header-container > ul{
-    margin-top: 20px;
-  }
 }
 
+.settings{
+  display: flex;
+  gap: 20px;
+}
+
+.settings > li{
+  background-image: url("../res/images/Settings.png");
+  width: 32px;
+  height: 32px;
+  background-size: 200% 200%;
+  background-repeat: no-repeat;
+}
+
+.settings > .audio-setting{
+  background-position-x: 0;
+}
+.settings > .particles-setting{
+  background-position-x: 0;
+  background-position-y: 100%;  
+}
+.settings > .audio-setting[toggled]{
+  background-position-x: 100%;
+}
+.settings > .particles-setting[toggled]{
+  background-position-x: 100%;
+}
+
+.settings > li:hover{
+  box-shadow: 0 0 10px var(--light);
+}
 
 
 .social-media{
