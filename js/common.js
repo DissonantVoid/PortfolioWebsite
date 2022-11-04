@@ -199,7 +199,6 @@ class skillStats extends HTMLElement
     formattedHTML.appendChild(table);
     this.innerHTML = title.outerHTML + formattedHTML.outerHTML; //outer html because we want to include the element itself and not just its children
   }
-
 }
 
 function createElementWithClass(element, cls)
