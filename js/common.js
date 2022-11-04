@@ -1,5 +1,7 @@
 "use strict";
 
+//TODO: consider spliting this into 2 files, one for the classes and one for the functions below
+
 class appHeader extends HTMLElement
 {
   constructor()
@@ -212,6 +214,7 @@ customElements.define("app-footer",appFooter);
 customElements.define("skill-stats",skillStats);
 
 
+//clickable
 function onClickableClicked(e)
 {
   if (e.currentTarget.hasAttribute("clickable-new-page-link")) window.open(e.currentTarget.getAttribute("clickable-new-page-link"),"_blank");
@@ -222,3 +225,23 @@ const clickables = document.querySelectorAll(".clickable");
 clickables.forEach(clickable => {
   clickable.addEventListener("click",onClickableClicked);
 });
+
+//tiles, note that there are 2 classes here: fade-into-view and fading-into-view
+const tileElements = [...document.querySelectorAll(".fade-into-view")];
+
+updateTiles(null); //initial check
+document.addEventListener("scroll",e => {updateTiles(e);});
+
+function updateTiles(e)
+{
+  for(let i = tileElements.length-1; i > -1; i--)
+  {
+    let element = tileElements[i];
+    let rect = element.getBoundingClientRect();
+    if((rect.top >= 0 && rect.top <= window.innerHeight) || (rect.bottom >= 0 && rect.bottom <= window.innerHeight))
+    {
+      element.classList.replace("fade-into-view","fading-into-view");
+      tileElements.splice(i,1);
+    }
+  }
+}

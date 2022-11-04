@@ -51,6 +51,14 @@ button, input, textarea{
   font-family: "pixel", Arial, sans-serif;
 }
 
+.fade-into-view{
+  opacity: 0;
+}
+.fading-into-view{
+  opacity: 1;
+  transition: opacity 2s;
+}
+
 .container{
   margin-left: 4vw;
   margin-right: 4vw;
