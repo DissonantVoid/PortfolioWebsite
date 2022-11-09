@@ -17,7 +17,7 @@ class appHeader extends HTMLElement
     `
      :
     `
-    <li><a href="../index.html">Back to main page</a></li>
+    <li><a href="index.html">Back to main page</a></li>
     `
 
     this.innerHTML = `

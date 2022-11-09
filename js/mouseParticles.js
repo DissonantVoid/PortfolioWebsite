@@ -18,7 +18,7 @@ window.addEventListener("load",function(){
   let contex = canvas.getContext("2d");
   
   let img = new Image();
-  img.src = "../res/images/Star.png"
+  img.src = "res/images/Star.png"
 
   window.addEventListener('resize', function(){
     canvas.width = window.innerWidth;
