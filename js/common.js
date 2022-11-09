@@ -8,8 +8,8 @@ class appHeader extends HTMLElement
   {
     super();
 
-    this.navType = this.getAttribute("type");
-    let isIndex = this.navType === "index";
+    let navType = this.getAttribute("type");
+    let isIndex = navType === "index";
     let nav = isIndex ?
     `
     <li><a id="nav-skill">Skills</a></li>
@@ -84,8 +84,13 @@ class appFooter extends HTMLElement
   constructor()
   {
     super();
+    
+    let navType = this.getAttribute("type");
     this.innerHTML = `
-    <footer>
+    <footer>`
+    + (navType === "index" ? "" :
+    ` <a class="back-to-idx" href="index.html">Back to main page</a>`) +
+    `
       <p>Copyright 2022, All Rights Reserved <span>(whatever that means)</span></p>
     </footer>
     `

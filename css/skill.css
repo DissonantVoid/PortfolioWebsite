@@ -113,16 +113,3 @@ skill-stats > h4{
 .example > .social-media{
   margin-top: 20px;
 }
-
-
-
-.back-to-idx{
-  display: block;
-  width: fit-content;
-  margin: 0 auto;
-  color: var(--light);
-}
-
-.back-to-idx:hover{
-  color: var(--green);
-}

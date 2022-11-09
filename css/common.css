@@ -210,6 +210,21 @@ footer{
   color: var(--light);
 }
 
-footer span{
+footer > p{
+  margin-top: 5px;
+}
+
+footer > p > span{
   font-size: 1rem;
+}
+
+.back-to-idx{
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  color: var(--light);
+}
+
+.back-to-idx:hover{
+  color: var(--green);
 }
