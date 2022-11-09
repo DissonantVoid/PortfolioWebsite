@@ -7,6 +7,7 @@
   <link rel="icon" href="res/images/Icon.png" type="image/x-icon">
   <link rel="stylesheet" href="css/common.css">
   <link rel="stylesheet" href="css/index.css">
+  <script src="js/index.js" defer></script>
   <script src="js/common.js" defer></script>
   <script src="js/mouseParticles.js" defer></script>
   <title>Portfolio | Dissonant Void</title>
@@ -48,7 +49,7 @@
       </li>
     </ul>
   </section>
-  <section id="contact" class="contact container">
+  <section id="contact" class="contact container fade-into-view">
     <h2 class="section-title">- Contact me! -</h2>
     <ul class="social-media">
       <li id="discord" class="clickable" clickable-new-page-link="https://discordapp.com/users/776145967383969804">
@@ -60,21 +61,8 @@
         <p>Itch</p>
       </li>
     </ul>
-    <div class="email-section">
-      <h2 class="fade-into-view">Send an email:</h2>
-      <div class="line-input fade-into-view">
-        <p>Email</p>
-        <input type="email" id="">
-      </div>
-      <div class="line-input fade-into-view">
-        <p>Title</p>
-        <input type="text" id="">
-      </div>
-      <div class="email-body fade-into-view">
-        <p>Message</p>
-        <textarea cols="30" rows="10" wrap="off"></textarea>
-      </div>
-      <button class="fade-into-view"> Submit </button>
+    <div class="email email-hidden clickable">
+      <p>Reveal Email!</p>
     </div>
   </section>
   <app-footer></app-footer>

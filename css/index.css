@@ -198,78 +198,51 @@ main{
   color: var(--light);
 }
 
-.email-section{
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  width: 80vw;
-  margin: 40px auto 0 auto;
-  padding: 0 10px 10px 10px;
+.email{
+  position: relative;
+  font-size: 2.6rem;
   background-color: var(--dark-purple);
-  border-radius: 8px;
+  width: fit-content;
+  min-width: 40vw;
+  padding: 8px 15px;
+  margin: 20px auto 0 auto;
 }
 
-.email-section input, textarea{
-  border-width: 0;
-  font-size: 2rem;
-  padding: 10px;
-  background-color: var(--light);
-  caret-color: var(--dark-purple);
-  color: var(--dark-purple);
-}
-
-.email-section input:focus, textarea:focus{
-  border-width: 0;
-  outline: none;
-}
-
-.email-section p{
-  color: var(--light);
-}
-
-.email-section h2{
+.email-hidden:hover{
   color: var(--green);
-  font-weight: normal;
 }
 
-.email-section > *{
-  margin-top: 25px;
+.email-revealed{
+  position: relative;
+  background-color: var(--green);
 }
 
-.email-section > button{
-  font-size: 2.2rem;
-  background-color: var(--dark-green);
-  color: var(--light);
-  height: 40px;
+.email-revealed::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  border-width: 0;
-  border-color: var(--light);
-  border-style: solid;
+  height: 100%;
+  background-color: var(--dark-purple);
+  animation: reveal-email 1s linear forwards;
 }
 
-.email-section > button:hover{
-  border-width: 4px;
-  background-color: transparent;
+.email-revealed > p{
+  opacity: 0;
+  color: var(--dark-purple);
+  animation: reaveal-text 1s linear 1.2s forwards;
 }
 
-.line-input{
-  display: flex;
-  align-items: center;
-  width: 100%;
+@keyframes reveal-email {
+  100%{
+    width: 0;
+    left: 50%;
+  }
 }
 
-.line-input > input{
-  margin-left: 10px;
-  width: 100%;
-  height: 40px;
-}
-
-.email-body{
-  width: 100%;
-}
-
-.email-body > textarea{
-  resize: none;
-  margin-top: 10px;
-  width: 100%;
+@keyframes reaveal-text {
+  100%{
+    opacity: 100;
+  }
 }
