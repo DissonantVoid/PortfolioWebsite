@@ -53,10 +53,15 @@ button, input, textarea{
 
 .fade-into-view{
   opacity: 0;
+  filter: blur(2px);
+  transform: scale(0.8);
 }
 .fading-into-view{
   opacity: 1;
-  transition: opacity 2s;
+  filter: none;
+  transition: opacity 2s,
+              filter 1s,
+              transform 0.4s ease-out;
 }
 
 .container{
