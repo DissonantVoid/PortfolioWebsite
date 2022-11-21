@@ -196,7 +196,7 @@ header{
 }
 
 .social-media > li:hover > img{
-  opacity: 0.8;
+  filter: contrast(2);
 }
 .social-media > li:hover > p{
   text-decoration: underline;
