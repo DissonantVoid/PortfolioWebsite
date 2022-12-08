@@ -5,7 +5,7 @@
 
 @keyframes main-bg-scroll {
   to{
-    background-position: 100% -100%;
+    background-position: 100% -100%, 40% -40%;
   }
 }
 
@@ -21,7 +21,7 @@ main{
   align-items: center;
   min-height: 80vh;
   padding: 40px 0;
-  background: url("../res/images/Space.png");
+  background-image: url("../res/images/SpaceLayer2.png"), url("../res/images/SpaceLayer1.png");
   background-repeat: repeat;
   animation: main-bg-scroll 40s linear infinite;
 }
@@ -97,8 +97,11 @@ main{
 }
 
 
+
 .skills{
   background-color: var(--dark-purple);
+  position: relative;
+  overflow: hidden;
 }
 
 .skills > p{
@@ -117,12 +120,12 @@ main{
 .skills-wrapper > li{
   border: 5px solid var(--light);
   height: var(--skill-box-size);
-  position: relative;
   background-image: url("../res/images/SkillBox.png");
   background-size: 200% 200%;
   background-repeat: no-repeat;
   box-shadow: 0 0 10px var(--light);
   position: relative;
+  z-index: 1; /* so the circle can appear behind */
 }
 
 .skills-wrapper > li::after{
@@ -169,8 +172,35 @@ main{
                0 0 4px var(--black);
 }
 
+.skill-selection-highlighter{
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background-color: var(--green);
+  pointer-events: none;
+  border-radius: 20px;
+  z-index: 0;
+  transform-origin: center;
+}
+.visible-selection-highlighter{
+  display: block;
+  animation: skill-highlighter-expand 0.2s ease-out forwards;
+}
+@keyframes skill-highlighter-expand {
+  to{
+    --size: 400px;
+    --offset: -100px; /* -half [size] + half highlighter size (100px) */
+    width: var(--size);
+    height: var(--size);
+    transform: translate(var(--offset),var(--offset));
+ }
+}
+
 @media (pointer: fine) {
-  /*if user is using mouse, hide skill text untill hovered*/
+  /* if user is using mouse, hide skill text untill hovered */
   .skills-wrapper > li:hover::after{
     opacity: 0.4;
   }
