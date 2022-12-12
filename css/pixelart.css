@@ -6,13 +6,6 @@
   display: flex;
   justify-content: center;
   gap: var(--gap-size);
-  
-  /*  --black: #000;
-  --light: #ededed;
-  --purple: #64317a;
-  --dark-purple: #1d1733;
-  --green: #7eab60;
-  --dark-green: #44803e; */
 }
 
 .hl-row > img{

@@ -4,7 +4,6 @@
 window.addEventListener("load",function(){
   
   //show particles only if user has a mouse
-  //TODO: needs testing
   if (matchMedia("(pointer:fine)").matches === false) return;
 
   let canvas = document.createElement("canvas");
@@ -34,7 +33,7 @@ window.addEventListener("load",function(){
     this.dirX = 0;
     this.dirY = 1;
     this.angle = Math.random() * (Math.PI * 2);
-    //TODO: brocken
+    
     this.dirX = Math.cos(this.angle) * this.dirX - Math.sin(this.angle) * this.dirY;
     this.dirY = Math.sin(this.angle) * this.dirX + Math.cos(this.angle) * this.dirY;
 
@@ -60,7 +59,7 @@ window.addEventListener("load",function(){
     
     contex.clearRect(0,0,canvas.width,canvas.height);
     
-    for (let i = particlesPool.length-1; i > -1; i--)
+    for (let i = particlesPool.length-1; i > -1; i--) //reverse iteration so we can safely delete
     {
       let ptcl = particlesPool[i];
       

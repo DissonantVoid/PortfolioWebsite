@@ -161,7 +161,7 @@ header{
   background-image: url("../res/images/Settings.png");
   width: 32px;
   height: 32px;
-  background-size: 200% 200%;
+  background-size: 200%;
   background-repeat: no-repeat;
 }
 
@@ -195,6 +195,10 @@ header{
   color: var(--light);
 }
 
+.social-media > li > img{
+  animation: continious-rotation 5s linear infinite forwards;
+}
+
 .social-media > li:hover > img{
   filter: contrast(2);
 }
@@ -205,6 +209,18 @@ header{
 
 .social-media > li > img{
   margin-bottom: 0;
+}
+
+@keyframes continious-rotation {
+  0%{
+    transform: rotate(-25deg);
+  }
+  50%{
+    transform: rotate(25deg);
+  }
+  100%{
+    transform: rotate(-25deg);
+  }
 }
 
 

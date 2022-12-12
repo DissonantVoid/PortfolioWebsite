@@ -12,12 +12,12 @@ class appHeader extends HTMLElement
     let isIndex = navType === "index";
     let nav = isIndex ?
     `
-    <li><a id="nav-skill">Skills</a></li>
-    <li><a id="nav-contact">Contact</a></li>
+    <li><a id="nav-skill" sfx-hover="linkHover" sfx-press="linkPress">Skills</a></li>
+    <li><a id="nav-contact" sfx-hover="linkHover" sfx-press="linkPress">Contact</a></li>
     `
      :
     `
-    <li><a href="index.html">Back to main page</a></li>
+    <li><a href="index.html" sfx-hover="linkHover">Back to main page</a></li>
     `
 
     this.innerHTML = `
@@ -29,8 +29,8 @@ class appHeader extends HTMLElement
           + nav + `
           </ul>
           <ul class="settings">
-            <li class="audio-setting clickable"></li>
-            <li class="particles-setting clickable"></li>
+            <li class="audio-setting clickable" sfx-hover="settingHover" sfx-press="settingPress"></li>
+            <li class="particles-setting clickable" sfx-hover="settingHover" sfx-press="settingPress"></li>
           </ul>
         </div>
       </div>
@@ -89,7 +89,7 @@ class appFooter extends HTMLElement
     this.innerHTML = `
     <footer>`
     + (navType === "index" ? "" :
-    ` <a class="back-to-idx" href="index.html">Back to main page</a>`) +
+    ` <a class="back-to-idx" href="index.html" sfx-hover="linkHover">Back to main page</a>`) +
     `
       <p>Copyright 2022, All Rights Reserved <span>(whatever that means)</span></p>
     </footer>
@@ -99,17 +99,11 @@ class appFooter extends HTMLElement
 
 class skillStats extends HTMLElement
 {
-  connectedCallback()
+  constructor()
   {
-    //wait for 0 time, enough for children to load
-    //TODO: need to learn how this code works
-    setTimeout(this.onConnected.bind(this));
-  }
-
-  onConnected()
-  {
+    super();
     //while this code was a great practice as an introduction to js
-    //but it can probably be done differently
+    //it can probably be done differently
 
     //get child of type <ul>, for each <li> create a new column with name = li.title attribute, and for each comma seperated entry in <li> create a new row
     let ul = this.querySelector("ul");
@@ -139,10 +133,10 @@ class skillStats extends HTMLElement
       }
     }
 
-    console.log(cols);
-    console.log(rows);
+    //console.log(cols);
+    //console.log(rows);
+    
     //reverse so highest skills are on top.
-    //TODO: instead of reversing, we should insert reversed children in for loop above
     rows.reverse()
 
     //-reformating:-
@@ -218,6 +212,7 @@ customElements.define("app-footer",appFooter);
 customElements.define("skill-stats",skillStats);
 
 
+
 //clickable
 function onClickableClicked(e)
 {
@@ -234,7 +229,8 @@ clickables.forEach(clickable => {
 const tileElements = [...document.querySelectorAll(".fade-into-view")];
 
 updateTiles(null); //initial check
-document.addEventListener("scroll",e => {updateTiles(e);});
+document.addEventListener("scroll",e => updateTiles(e));
+window.addEventListener("resize",e => updateTiles(e))
 
 function updateTiles(e)
 {
@@ -249,3 +245,61 @@ function updateTiles(e)
     }
   }
 }
+
+//sfx
+
+//get audio permission
+//TODO: doesn't work, maybe only works on HTTPS, I'll have to upload to github and see
+navigator.mediaDevices.getUserMedia({audio:true})
+.then(stream => {
+  console.log(stream);
+})
+.catch(() => {
+
+});
+
+const sounds = {
+  "linkHover":    new Audio("res/sfx/LinkHover.ogg"),
+  "linkPress":    new Audio("res/sfx/LinkPress.ogg"),
+  "settingHover": new Audio("res/sfx/SettingHover.ogg"),
+  "settingPress": new Audio("res/sfx/SettingPress.ogg"),
+  "skillHoverProgramming":new Audio("res/sfx/SkillHoverProgramming.ogg"),
+  "skillHoverPixelArt":   new Audio("res/sfx/SkillHoverPixelArt.ogg"),
+  "skillHoverMusic":      new Audio("res/sfx/SkillHoverMusic.ogg"),
+  "SkillHoverEditing":    new Audio("res/sfx/SkillHoverEditing.ogg"),
+  "socialHover":  new Audio("res/sfx/SocialHover.ogg"),
+  "socialPress":  new Audio("res/sfx/SocialPress.ogg"),
+  "emailPress":   new Audio("res/sfx/EmailPress.ogg"),
+  "emailCopy":    new Audio("res/sfx/EmailCopy.ogg")
+}
+
+//TODO: we may need to ditch the sfx-.. attributes approach and assign sfx manually from script,
+//      problem with curr approach is that it only offers basic control, for example we can't stop
+//      all other skill hover sfxs when one plays, and we can't set sfx-once for press only...
+
+const hoverSfxEl = document.querySelectorAll("*[sfx-hover]");
+const pressSfxEl = document.querySelectorAll("*[sfx-press]");
+
+function addSfxListener(element, isHover)
+{
+  const soundName = isHover ? element.getAttribute("sfx-hover") : element.getAttribute("sfx-press");
+  const eventName = isHover ? "mouseover" : "click";
+  if (soundName in sounds)
+  {
+    const playOnce = element.hasAttribute("sfx-once");
+
+    element.addEventListener(eventName,function response(e){
+      if(playOnce) element.removeEventListener(eventName,response);
+      
+      sounds[soundName].currentTime = 0;
+      sounds[soundName].play();
+    });
+  }
+  else console.error("in [" + window.location.pathname + "] no sfx with name " + soundName);
+}
+
+for (let el of hoverSfxEl)
+  addSfxListener(el,true);
+
+for (let el of pressSfxEl)
+  addSfxListener(el,false);

@@ -24,7 +24,7 @@
             <span class="focal-sentence">A nerdy freelancer from Morocco and a sucker for learning,</span><br>
             I have years of experience in a number of fields from Programming and Game developement to 
             Music composition and more. you can check out my work in details below!<br>
-            I put my main focus on communication and speed of delivery to ensure client satisfaction,
+            I put my main focus on communication and speed of delivery to ensure satisfaction, and can do both short and long term projects solo or in a team,
             I'm open for suggestions and revisions and always down for a challenge!
           </p>
         </div>
@@ -35,16 +35,16 @@
     <h2 class="section-title">- Checkout my work -</h2>
     <p>Click a skill to learn more!</p>
     <ul class="skills-wrapper">
-      <li class="skill-programming clickable fade-into-view" clickable-link="programming.html">
+      <li class="skill-programming clickable fade-into-view" sfx-hover="skillHoverProgramming" clickable-link="programming.html">
         <h4>Programming</h4>
       </li>
-      <li class="skill-pixelart clickable fade-into-view" clickable-link="pixelart.html">
+      <li class="skill-pixelart clickable fade-into-view" sfx-hover="skillHoverPixelArt" clickable-link="pixelart.html">
         <h4>Pixel Art</h4>
       </li>
-      <li class="skill-music clickable fade-into-view" clickable-link="music.html">
+      <li class="skill-music clickable fade-into-view" sfx-hover="skillHoverMusic" clickable-link="music.html">
         <h4>Music Composition</h4>
       </li>
-      <li class="skill-editing clickable fade-into-view" clickable-link="editing.html">
+      <li class="skill-editing clickable fade-into-view" sfx-hover="SkillHoverEditing" clickable-link="editing.html">
         <h4>Photo / Video Editing</h4>
       </li>
     </ul>
@@ -53,17 +53,18 @@
   <section id="contact" class="contact container fade-into-view">
     <h2 class="section-title">- Contact me! -</h2>
     <ul class="social-media">
-      <li class="clickable" clickable-new-page-link="https://discordapp.com/users/776145967383969804">
+      <li class="clickable" sfx-hover="socialHover" sfx-press="socialPress" clickable-new-page-link="https://discordapp.com/users/776145967383969804">
         <img src="res/images/Icons/Discord.png" alt="Discord">
         <p>Discord</p>
       </li>
-      <li class="clickable" clickable-new-page-link="https://x-void-x.itch.io">
+      <li class="clickable" sfx-hover="socialHover" sfx-press="socialPress" clickable-new-page-link="https://x-void-x.itch.io">
         <img src="res/images/Icons/Itch.png" alt="Itch">
         <p>Itch</p>
       </li>
     </ul>
-    <div class="email email-hidden clickable">
+    <div class="email email-hidden clickable" sfx-press="emailPress" sfx-once>
       <p>Reveal Email!</p>
+      <button class="email-copy clickable" sfx-press="emailCopy"></button>
     </div>
   </section>
   <app-footer type="index"></app-footer>

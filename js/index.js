@@ -43,8 +43,14 @@ window.addEventListener("load",function(){
     //remove event listener
     e.currentTarget.removeEventListener("click",clickHandler);
 
+    e.currentTarget.classList.remove("clickable");
     e.currentTarget.classList.replace("email-hidden","email-revealed");
     e.currentTarget.querySelector("p").innerText = email;
   });
+
+  const emailCopy = this.document.querySelector(".email-copy");
+  emailCopy.addEventListener("click",() =>{
+    this.navigator.clipboard.writeText(email);
+  })
 
 });
