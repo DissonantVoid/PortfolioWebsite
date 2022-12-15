@@ -2,6 +2,8 @@
 
 //TODO: consider spliting this into 2 files, one for the classes and one for the functions below
 
+//const ev = CustomEvent("AppSettingChanged",);
+
 class appHeader extends HTMLElement
 {
   constructor()
@@ -46,36 +48,30 @@ class appHeader extends HTMLElement
     }
 
     //settings & local storage
-    this.isAudioToggled = localStorage.getItem("isAudioToggled") === "true";
-    this.isParticlesToggled = localStorage.getItem("isParticlesToggled") === "true";
+    this.isAudioActive = JSON.parse(localStorage.getItem("isAudioActive")) || false;
+    this.isParticlesActive = JSON.parse(localStorage.getItem("isParticlesActive")) || false;
 
     const audioSetting = document.querySelector(".audio-setting");
     const particlesSetting = document.querySelector(".particles-setting");
-    this.toggleAudioHtml(this.isAudioToggled,audioSetting);
-    this.toggleParticlesHtml(this.isParticlesToggled,particlesSetting);
+    this.toggleSetting(this.isAudioActive,audioSetting);
+    this.toggleSetting(this.isParticlesActive,particlesSetting);
 
     audioSetting.addEventListener("click",e => {
-      this.isAudioToggled = !this.isAudioToggled;
-      localStorage.setItem("isAudioToggled",this.isAudioToggled);
-      this.toggleAudioHtml(this.isAudioToggled,e.currentTarget);
+      this.isAudioActive = !this.isAudioActive;
+      localStorage.setItem("isAudioActive", JSON.stringify(this.isAudioActive));
+      this.toggleSetting(this.isAudioActive,e.currentTarget);
     });
     particlesSetting.addEventListener("click",e => {
-      this.isParticlesToggled = !this.isParticlesToggled;
-      localStorage.setItem("isParticlesToggled",this.isParticlesToggled);
-      this.toggleParticlesHtml(this.isParticlesToggled,e.currentTarget);
+      this.isParticlesActive = !this.isParticlesActive;
+      localStorage.setItem("isParticlesActive", JSON.stringify(this.isParticlesActive));
+      this.toggleSetting(this.isParticlesActive,e.currentTarget);
     });
   }
   
-  toggleAudioHtml(toggle, target)
+  toggleSetting(isActive, settingEl)
   {
-    if(toggle) target.setAttribute("toggled","");
-    else target.removeAttribute("toggled");
-  }
-  
-  toggleParticlesHtml(toggle, target)
-  {
-    if(toggle) target.setAttribute("toggled","");
-    else target.removeAttribute("toggled");
+    if(isActive) settingEl.setAttribute("active","");
+    else settingEl.removeAttribute("active");
   }
 }
 
@@ -246,18 +242,29 @@ function updateTiles(e)
   }
 }
 
+//sfx popup
+if(JSON.parse(localStorage.getItem("isAudioActive")))
+{
+  const popup = createElementWithClass("div", "sound-popup");
+  popup.innerHTML = `
+    <div>
+      <img src="res/images/Note.png" alt="Note">
+      <h4>Click Anywhere To Activate Audio!</h4>
+    </div>
+  `
+  document.body.appendChild(popup);
+  
+  document.body.addEventListener("mousedown",function callback(e) {
+    //remove event
+    document.body.removeEventListener("mousedown",callback,true);
+    document.body.removeChild(popup);  
+  },true);
+
+  //TODO: listen for keyboard input as well, note that some input like arrows doesn't activate audio
+}
+
+
 //sfx
-
-//get audio permission
-//TODO: doesn't work, maybe only works on HTTPS, I'll have to upload to github and see
-navigator.mediaDevices.getUserMedia({audio:true})
-.then(stream => {
-  console.log(stream);
-})
-.catch(() => {
-
-});
-
 const sounds = {
   "linkHover":    new Audio("res/sfx/LinkHover.ogg"),
   "linkPress":    new Audio("res/sfx/LinkPress.ogg"),

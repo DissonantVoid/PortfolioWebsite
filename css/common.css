@@ -166,21 +166,88 @@ header{
 }
 
 .settings > .audio-setting{
-  background-position-x: 0;
+  background-position-x: 100%;
 }
 .settings > .particles-setting{
-  background-position-x: 0;
+  background-position-x: 100%;
   background-position-y: 100%;  
 }
-.settings > .audio-setting[toggled]{
-  background-position-x: 100%;
+.settings > .audio-setting[active]{
+  background-position-x: 0;
 }
-.settings > .particles-setting[toggled]{
-  background-position-x: 100%;
+.settings > .particles-setting[active]{
+  background-position-x: 0;
 }
 
 .settings > li:hover{
   box-shadow: 0 0 10px var(--light);
+}
+
+
+.sound-popup{
+  position: fixed;
+  margin-bottom: 40px;
+  margin-right: 40px;
+  bottom: 0; right: 0;
+  z-index: 100;
+  border-left: 4px solid var(--light);
+  border-right: 4px solid var(--light);
+  border-radius: 4px;
+  animation: popup-show 1s ease-out forwards;
+}
+
+.sound-popup > div{
+  display: flex;
+  align-items: center;
+  background-color: var(--dark-green);
+  margin: 20px 0px;
+  box-shadow: 0 0 10px var(--purple);
+  border-top: 2px solid var(--purple);
+  border-bottom: 2px solid var(--purple);
+  animation: popup-attention 1s linear alternate infinite;
+}
+
+.sound-popup > div > h4{
+  color: var(--light);
+  text-align: center;
+  margin-left: 10px;
+}
+
+@keyframes popup-show {
+  from{
+    right: -40%;
+  }
+  to{
+    right: 0;
+  }
+}
+
+@keyframes popup-attention {
+  from{
+    padding-right: 10px;
+    padding-left: 20px;
+    /* genious right? lol */
+  }
+  to{
+    padding-left: 10px;
+    padding-right: 20px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .sound-popup{
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  @keyframes popup-show {
+    from{
+      bottom: -40%;
+    }
+    to{
+      bottom: 0;
+    }
+  }
 }
 
 
