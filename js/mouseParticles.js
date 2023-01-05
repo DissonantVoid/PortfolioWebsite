@@ -7,14 +7,20 @@ window.addEventListener("load",function(){
   if (matchMedia("(pointer:fine)").matches === false) return;
 
   let canvas = document.createElement("canvas");
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  
+  const scale = window.devicePixelRatio;
+  canvas.width = window.innerWidth * scale; //scale size based on pixel density
+  canvas.height = window.innerHeight * scale;
+
   canvas.style.position = "fixed";
   canvas.style.top = 0;
   canvas.style.left = 0;
   canvas.style.pointerEvents = "none";
   document.body.appendChild(canvas);
+  
   let contex = canvas.getContext("2d");
+  // normalize coords so that 1 pixels matches window.devicePixelRatio
+  contex.scale(scale, scale);
   
   let img = new Image();
   img.src = "res/images/Star.png"

@@ -79,6 +79,7 @@ skill-stats > h4{
 .stats-table td:first-child{
   background-color: var(--purple);
   width: 0%; /* this seems to behave as min-content should, while min-content doesn't work. and I thought c++ was wierd*/
+  max-width: 20vw;
 }
 
 .stats-table .table-rect{

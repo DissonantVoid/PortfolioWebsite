@@ -107,7 +107,7 @@ class skillStats extends HTMLElement
     
     let cols = new Array(); //[name,...] 
     let rows = new Array(); //[[name,col],..]
-    for(var child = ul.firstChild; child !== null; child = child.nextSibling)
+    for(let child of ul.children)
     {
       if(child.tagName == "LI")
       {
@@ -260,7 +260,7 @@ if(JSON.parse(localStorage.getItem("isAudioActive")))
     document.body.removeChild(popup);  
   },true);
 
-  //TODO: listen for keyboard input as well, note that some input like arrows doesn't activate audio
+  //TODO: listen for keyboard input as well, note that some input like arrows don't activate audio
 }
 
 
