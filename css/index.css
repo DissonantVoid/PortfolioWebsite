@@ -73,7 +73,7 @@ main{
 }
 
 .main-text > p > .focal-sentence{
-  font-size: 1.2em;
+  font-size: 1.25em;
 }
 
 @media only screen and (max-width: 900px) {
@@ -91,7 +91,7 @@ main{
   }
 
   .main-text > p{
-    font-size: 2rem;
+    font-size: 2.2rem;
     line-height: 1.6rem;
   }
 }

@@ -1,11 +1,12 @@
 :root{
-  --gap-size: 5px;
+  --h-gap-size: 6px;
+  --v-gap-size: 15px;
 }
 
 .highlights{
   display: flex;
   justify-content: center;
-  gap: var(--gap-size);
+  gap: var(--h-gap-size);
 }
 
 .hl-row > img{
@@ -15,8 +16,8 @@
 .hl-row{
   background-image: linear-gradient(to bottom, var(--purple), var(--dark-purple));
   display: flex;
-  gap: var(--gap-size);
   flex-direction: column;
+  gap: var(--v-gap-size);
 }
 
 @media screen and (max-width: 900px){

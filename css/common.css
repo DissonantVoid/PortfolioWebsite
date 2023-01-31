@@ -106,9 +106,8 @@ header{
 }
 
 .header-container > h1{
-  font-size: 4rem;
+  font-size: 4.2rem;
   letter-spacing: 5px;
-  font-weight: 600;
   color: var(--purple);
   text-decoration: underline;
   text-shadow: 0 0 8px var(--purple);
@@ -210,6 +209,7 @@ header{
 .sound-popup > div > h4{
   color: var(--light);
   text-align: center;
+  line-height: 1.8rem;
   margin-left: 10px;
 }
 
