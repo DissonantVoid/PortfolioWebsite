@@ -253,7 +253,7 @@ header{
 
 .social-media{
   display: flex;
-  gap: 15vw;
+  gap: 12vw;
   justify-content: center;
 }
 
@@ -280,13 +280,13 @@ header{
 
 @keyframes continious-rotation {
   0%{
-    transform: rotate(-25deg);
+    transform: rotate(-20deg);
   }
   50%{
-    transform: rotate(25deg);
+    transform: rotate(20deg);
   }
   100%{
-    transform: rotate(-25deg);
+    transform: rotate(-20deg);
   }
 }
 
@@ -300,10 +300,6 @@ footer{
 
 footer > p{
   margin-top: 5px;
-}
-
-footer > p > span{
-  font-size: 1rem;
 }
 
 .back-to-idx{

@@ -87,7 +87,7 @@ class appFooter extends HTMLElement
     + (navType === "index" ? "" :
     ` <a class="back-to-idx" href="index.html" sfx-hover="linkHover">Back to main page</a>`) +
     `
-      <p>Copyright 2023, All Rights Reserved <span>(whatever that means)</span></p>
+      <p>Copyright 2024, All Rights Reserved</p>
     </footer>
     `
   }
